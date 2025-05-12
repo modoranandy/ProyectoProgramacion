@@ -10,5 +10,4 @@ class Curso:
     def __eq__(self, other):
         if isinstance(other, Curso):
             return self.curso == other.curso and self.nivel == other.nivel and self.letra == other.letra
-        else:
-            return False
+        return False

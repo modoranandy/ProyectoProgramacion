@@ -7,7 +7,7 @@ class Libro:
         self.titulo:str = str(titulo)
         self.autor:str = str(autor)
         self.numero_ejemplares:int = int(numero_ejemplares)
-        self.isbn:int = int(isbn)
+        self.isbn:str = str(isbn)
         self.fecha_entrega:str = str(fecha_entrega)
         self.fecha_devolucion:str = str(fecha_devolucion)
         self.estado = estado if estado in EstadoLibro else EstadoLibro.ENLABIBLIOTECA
@@ -19,5 +19,4 @@ class Libro:
     def __eq__(self, other):
         if isinstance(other, Libro):
             return self.isbn == other.isbn
-        else:
-            return False
+        return False

@@ -1,3 +1,6 @@
+from abc import abstractmethod
+
+
 class Admin:
     def __init__(self, nombre:str = "Admin", apellido:str = "0", edad:int = 0):
         self.nombre:str = str(nombre)
@@ -10,5 +13,10 @@ class Admin:
     def __eq__(self, other):
         if isinstance(other, Admin):
             return self.nombre == other.nombre
-        else:
-            return False
+        return False
+
+    @abstractmethod
+    def login(self):
+        pass
+
+    @abstractmethod
