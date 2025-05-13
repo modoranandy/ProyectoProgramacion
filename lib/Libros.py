@@ -1,4 +1,4 @@
-from config import EstadoLibro
+from config.config import EstadoLibro
 
 class Libro:
     def __init__(self, titulo:str ="Titulo", autor:str = "Autor" , numero_ejemplares:int = 0,

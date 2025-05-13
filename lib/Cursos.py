@@ -11,3 +11,4 @@ class Curso:
         if isinstance(other, Curso):
             return self.curso == other.curso and self.nivel == other.nivel and self.letra == other.letra
         return False
+

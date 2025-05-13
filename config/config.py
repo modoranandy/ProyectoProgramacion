@@ -5,6 +5,10 @@ class EstadoLibro(Enum):
     PRESTADO = 1
     DEVUELTO = 2
 
+class NivelCurso(Enum):
+    PRIMARIA = "PRIMARIA".upper()
+    SECUNDARIA = "SECUNDARIA".upper()
+    BACHILLERATO = "BACHILLERATO".upper()
 
 def get_all_values_enum(enumeracion: any) -> [int]:
     return [e.value for e in enumeracion]
