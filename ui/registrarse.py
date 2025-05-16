@@ -10,7 +10,8 @@ class Registro:
         print("¡¡¡IMPORTANTE!!!")
         print("Si usted se desea registrar en la página web, pida en su centro su contraseña y usuario.")
 
-    def _recoger_opcion(self) -> str:
+    @staticmethod
+    def _recoger_opcion() -> str:
         while True:
             opcion = input("¿Se quiere registrar usted? (S/N): ").upper()
             if opcion in ("S", "N"):
@@ -18,7 +19,8 @@ class Registro:
             else:
                 print("Error, introduzca una opción válida (S o N).")
 
-    def _tratar_opcion(self, opcion: str):
+    @staticmethod
+    def _tratar_opcion( opcion: str):
         match opcion:
             case "S":
                 Login()
