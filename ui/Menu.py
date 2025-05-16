@@ -20,5 +20,4 @@ class Menu(ABC):
 
     @abstractmethod
     def _recoger_menu_opciones(self) -> int:
-        opcion:int = int(input("Elija una opcion: "))
-        return opcion
+        pass
