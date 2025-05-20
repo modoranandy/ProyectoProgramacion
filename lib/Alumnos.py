@@ -6,7 +6,7 @@ RUTA_CSV = "config/alumnos.csv"
 
 class Alumno:
 
-    CAMPOS = ["id", "nombre", "apellidos", "tramo", "bilingue", "curso", "nivel", "seccion"]
+    CAMPOS = ["dni", "nombre", "apellido", "edad","tramo", "bilingue", "curso", "nivel", "letra"]
 
     def __init__(self, nombre:str = "Alumno", apellido:str = "0", edad:int = 0, tramo: Tramos | None = None,
                  dni:str = "000000000X",curso: Curso | None = None, bilingue:Bilingue | None = None):
@@ -48,6 +48,25 @@ class Alumno:
         tramo = Tramos(tramo)
         bilingue = Bilingue(bilingue)
         return Alumno(nombre, apellido, edad, tramo, dni, curso,bilingue)
+
+    @staticmethod
+    def buscar_alumno_por_dni(alumnos, dni):
+        for alumno in alumnos:
+            if alumno.dni == dni:
+                return alumno
+        return None
+
+    @staticmethod
+    def eliminar_alumno(alumnos, dni):
+        alumno = Alumno.buscar_alumno_por_dni(alumnos, dni)
+        if alumno:
+            alumnos.remove(alumno)
+            Alumno.guardar_alumnos(alumnos)
+            print("Alumno eliminado correctamente.")
+            return True
+        else:
+            print("No se ha encontrado ningún alumno con ese DNI/NIE.")
+            return False
 
     @staticmethod
     def cargar_alumnos():
