@@ -12,6 +12,14 @@ class NivelCurso(Enum):
     BACHILLERATO = 3
     GRADO = 4
 
+class Tramos(Enum):
+    I = 0
+    II = 1
+    NINGUNO = 2
+
+class Bilingue(Enum):
+    NO = 0
+    SI = 1
 
 def get_all_values_enum(enumeracion: any) -> [int]:
     return [e.value for e in enumeracion]
