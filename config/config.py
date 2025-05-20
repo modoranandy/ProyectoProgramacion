@@ -21,6 +21,10 @@ class Bilingue(Enum):
     NO = 0
     SI = 1
 
+class EstadoPrestamo(Enum):
+    NOPRESTADO = 0
+    PRESTADO = 1
+
 def get_all_values_enum(enumeracion: any) -> [int]:
     return [e.value for e in enumeracion]
 

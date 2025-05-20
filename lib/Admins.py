@@ -1,4 +1,11 @@
+import csv
+
+RUTA_CSV = "config/admins.csv"
+
 class Admin:
+
+    CAMPOS = "nombre" "apellido" "edad"
+
     def __init__(self, nombre:str = "Admin", apellido:str = "0", edad:int = 0):
         self.nombre:str = str(nombre)
         self.apellido:str = str(apellido)
