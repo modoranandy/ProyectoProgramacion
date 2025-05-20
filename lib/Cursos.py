@@ -4,10 +4,10 @@ class Curso:
     def __init__(self, curso:int = 0, nivel: NivelCurso | None = None, letra:str = "A"):
         self.curso:int = int(curso)
         self.nivel: NivelCurso = nivel if nivel in NivelCurso else NivelCurso.SECUNDARIA
-        self.letra:str = str(letra)
+        self.letra:str = str(letra).upper()
 
     def __str__(self):
-        return f"{self.curso} {self.nivel} {self.letra}"
+        return f"{self.curso} {self.nivel.name} {self.letra}"
 
     def __eq__(self, other):
         if isinstance(other, Curso):
