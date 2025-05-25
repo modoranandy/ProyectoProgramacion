@@ -21,11 +21,11 @@ class MenuAdmin:
             opcion = input("Seleccione una opción: ")
 
             if opcion == "1":
-                self._mostrar_menu_libros()
+                self.mostrar_menu_libros()
             elif opcion == "2":
-                self._mostrar_menu_alumnos()
+                self.mostrar_menu_alumnos()
             elif opcion == "3":
-                self._mostrar_menu_prestamos()
+                self.mostrar_menu_prestamos()
             elif opcion == "4":
                 self.admin.modificar_alumno()
             elif opcion == "5":
@@ -40,7 +40,7 @@ class MenuAdmin:
             else:
                 print("Opción no válida.")
 
-    def _mostrar_menu_libros(self):
+    def mostrar_menu_libros(self):
         print("\n--- GESTIÓN DE LIBROS ---")
         print("1. Mostrar libros")
         print("2. Añadir libro")
@@ -58,7 +58,7 @@ class MenuAdmin:
         else:
             print("Opción no válida. Volviendo al menú principal.")
 
-    def _mostrar_menu_alumnos(self):
+    def mostrar_menu_alumnos(self):
         print("\n--- GESTIÓN DE ALUMNOS ---")
         print("1. Mostrar alumnos")
         print("2. Añadir alumno")
@@ -76,7 +76,7 @@ class MenuAdmin:
         else:
             print("Opción no válida. Volviendo al menú principal.")
 
-    def _mostrar_menu_prestamos(self):
+    def mostrar_menu_prestamos(self):
         print("\n--- GESTIÓN DE PRÉSTAMOS ---")
         print("1. Mostrar préstamos")
         print("2. Añadir préstamo")

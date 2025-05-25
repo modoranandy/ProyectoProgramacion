@@ -18,16 +18,14 @@ class Registro:
                 return opcion
             else:
                 print("Error, introduzca una opción válida (S o N).")
-
     @staticmethod
-    def tratar_opcion( opcion: str):
-        match opcion:
-            case "S":
-                Login()
-            case "N":
-                print("Hasta pronto, vuelva cuando quiera.")
-            case _:
-                print("Error inesperado.")
+    def tratar_opcion(opcion: str):
+        if opcion == "S":
+            Login().login()
+        elif opcion == "N":
+            print("Hasta pronto, vuelva cuando quiera.")
+        else:
+            print("Error inesperado.")
 
     def registrarse(self):
         self.imprimir_menu()
