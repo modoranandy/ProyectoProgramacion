@@ -1,5 +1,5 @@
 import csv
-from Cursos import Curso
+from lib.Cursos import Curso
 from config.config import NivelCurso, Tramos, Bilingue
 
 RUTA_CSV = "config/alumnos.csv"
