@@ -74,17 +74,30 @@ class Alumno:
         try:
             with open(RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
-                for fila in reader:
-                    if fila:
+                for i, fila in enumerate(reader):
+                    if not fila or len(fila) < 9:
+                        continue
+                    if i == 0 and fila[3].lower() == "edad":
+                        continue
+                    try:
+                        curso_obj = Curso(
+                            int(fila[6]),
+                            NivelCurso(int(fila[7])),
+                            fila[8]
+                        )
+                        tramo_enum = Tramos(int(fila[4]))
+                        bilingue_enum = Bilingue(int(fila[5]))
                         alumnos.append(Alumno(
                             nombre=fila[1],
                             apellido=fila[2],
                             edad=int(fila[3]),
-                            tramo=Tramos(int(fila[4])),
+                            tramo=tramo_enum,
                             dni=fila[0],
-                            curso=Curso(int(fila[6]), NivelCurso(int(fila[7])), fila[8]),
-                            bilingue=Bilingue(int(fila[5]))
+                            curso=curso_obj,
+                            bilingue=bilingue_enum
                         ))
+                    except Exception as e:
+                        print(f"Error en la fila {i + 1}: {fila}. Detalle: {e}")
         except FileNotFoundError:
             pass
         return alumnos
@@ -145,13 +158,13 @@ def editar_alumno(alumnos):
         alumno.apellido = nuevo_apellido.upper()
     if nueva_edad:
         alumno.edad = int(nueva_edad)
-    if nuevo_tramo and nuevo_tramo.isdigit():
+    if nuevo_tramo:
         alumno.tramo = Tramos(int(nuevo_tramo))
-    if nuevo_bilingue and nuevo_bilingue.isdigit():
+    if nuevo_bilingue:
         alumno.bilingue = Bilingue(int(nuevo_bilingue))
-    if nuevo_curso and nuevo_curso.isdigit():
+    if nuevo_curso:
         alumno.curso.curso = int(nuevo_curso)
-    if nuevo_nivel and nuevo_nivel.isdigit():
+    if nuevo_nivel:
         alumno.curso.nivel = NivelCurso(int(nuevo_nivel))
     if nueva_letra:
         alumno.curso.letra = nueva_letra.upper()

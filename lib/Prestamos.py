@@ -60,15 +60,21 @@ class Prestamo:
         try:
             with open(RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
-                for fila in reader:
-                    if fila:
+                for i, fila in enumerate(reader):
+                    if not fila or len(fila) < 5:
+                        continue
+                    if i == 0 and fila[4].lower() == "estado":
+                        continue
+                    try:
                         prestamos.append(Prestamo(
                             isbn=fila[0],
                             dni_alumno=fila[1],
                             fecha_prestamo=fila[2],
                             fecha_devolucion=fila[3],
-                            estado=EstadoPrestamo(fila[4])
+                            estado=EstadoPrestamo(int(fila[4]))
                         ))
+                    except Exception as e:
+                        print(f"Error en la fila {i + 1}: {fila}. Detalle: {e}")
         except FileNotFoundError:
             pass
         return prestamos
