@@ -1,10 +1,11 @@
 import csv
 from config.config import EstadoLibro
 
-RUTA_CSV = "config/libros.csv"
+
 
 class Libro:
 
+    RUTA_CSV = "config/libros.csv"
     CAMPOS = ["titulo","autor", "numero_ejemplares", "isbn" ,"estado"]
 
     def __init__(self, titulo:str ="Titulo", autor:str = "Autor" , numero_ejemplares:int = 0,
@@ -59,7 +60,7 @@ class Libro:
     def cargar_libros():
         libros = []
         try:
-            with open(RUTA_CSV, newline='', encoding='utf-8') as f:
+            with open(Libro.RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
                 for i, fila in enumerate(reader):
                     if not fila or len(fila) < 5:
@@ -82,7 +83,7 @@ class Libro:
 
     @staticmethod
     def guardar_libros(libros):
-        with open(RUTA_CSV, "w", newline='', encoding='utf-8') as f:
+        with open(Libro.RUTA_CSV, "w", newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(Libro.CAMPOS)
             for libro in libros:

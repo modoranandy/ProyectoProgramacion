@@ -1,11 +1,11 @@
 import csv
 from config.config import EstadoPrestamo
 
-RUTA_CSV = "config/prestamos.csv"
-
 
 class Prestamo:
+
     CAMPOS = [ "isbn", "dni_alumno", "fecha_prestamo", "fecha_devolucion", "estado"]
+    RUTA_CSV = "config/prestamos.csv"
 
     def __init__(self, isbn:str = "00000000X", dni_alumno:str = "0000000X", fecha_prestamo:str = "00/00/0000",
                  fecha_devolucion:str = "00/00/0000", estado :EstadoPrestamo | None = None):
@@ -58,7 +58,7 @@ class Prestamo:
     def cargar_prestamos():
         prestamos = []
         try:
-            with open(RUTA_CSV, newline='', encoding='utf-8') as f:
+            with open(Prestamo.RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
                 for i, fila in enumerate(reader):
                     if not fila or len(fila) < 5:
@@ -81,7 +81,7 @@ class Prestamo:
 
     @staticmethod
     def guardar_prestamos(prestamos):
-        with open(RUTA_CSV, "w", newline='', encoding='utf-8') as f:
+        with open(Prestamo.RUTA_CSV, "w", newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(Prestamo.CAMPOS)
             for prestamo in prestamos:

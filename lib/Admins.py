@@ -3,10 +3,12 @@ from lib.Alumnos import Alumno, editar_alumno
 from lib.Libros import Libro, editar_libro
 from lib.Prestamos import Prestamo, editar_prestamo
 
-RUTA_CSV = "config/admins.csv"
+
 
 class Admin:
+
     CAMPOS = ["nombre", "apellido", "edad"]
+    RUTA_CSV = "config/admins.csv"
 
     def __init__(self, nombre: str = "Admin", apellido: str = "0", edad: int = 0):
         self.nombre = str(nombre)
@@ -32,7 +34,7 @@ class Admin:
     def cargar_admins():
         admins = []
         try:
-            with open(RUTA_CSV, newline='', encoding='utf-8') as f:
+            with open(Admin.RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
                 next(reader, None)
                 for fila in reader:
@@ -48,7 +50,7 @@ class Admin:
 
     @staticmethod
     def guardar_admins(admins):
-        with open(RUTA_CSV, "w", newline='', encoding='utf-8') as f:
+        with open(Admin.RUTA_CSV, "w", newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(Admin.CAMPOS)
             for admin in admins:

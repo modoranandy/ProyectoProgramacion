@@ -2,10 +2,10 @@ import csv
 from lib.Cursos import Curso
 from config.config import NivelCurso, Tramos, Bilingue
 
-RUTA_CSV = "config/alumnos.csv"
 
 class Alumno:
 
+    RUTA_CSV = "config/alumnos.csv"
     CAMPOS = ["dni", "nombre", "apellido", "edad","tramo", "bilingue", "curso", "nivel", "letra"]
 
     def __init__(self, nombre:str = "Alumno", apellido:str = "0", edad:int = 0, tramo: Tramos | None = None,
@@ -72,7 +72,7 @@ class Alumno:
     def cargar_alumnos():
         alumnos = []
         try:
-            with open(RUTA_CSV, newline='', encoding='utf-8') as f:
+            with open(Alumno.RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
                 for i, fila in enumerate(reader):
                     if not fila or len(fila) < 9:
@@ -104,7 +104,7 @@ class Alumno:
 
     @staticmethod
     def guardar_alumnos(alumnos):
-        with open(RUTA_CSV, "w", newline='', encoding='utf-8') as f:
+        with open(Alumno.RUTA_CSV, "w", newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(Alumno.CAMPOS)
             for alumno in alumnos:
