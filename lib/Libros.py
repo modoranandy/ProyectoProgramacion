@@ -5,7 +5,7 @@ RUTA_CSV = "config/libros.csv"
 
 class Libro:
 
-    CAMPOS = ["titulo" "autor" "numero_ejemplares" "isbn" "estado"]
+    CAMPOS = ["titulo","autor", "numero_ejemplares", "isbn" ,"estado"]
 
     def __init__(self, titulo:str ="Titulo", autor:str = "Autor" , numero_ejemplares:int = 0,
                  isbn:str ="0000000X" , estado: EstadoLibro | None = None ):
@@ -61,8 +61,12 @@ class Libro:
         try:
             with open(RUTA_CSV, newline='', encoding='utf-8') as f:
                 reader = csv.reader(f)
-                for fila in reader:
-                    if fila:
+                for i, fila in enumerate(reader):
+                    if not fila or len(fila) < 5:
+                        continue
+                    if i == 0 and fila[0].lower() == "titulo":
+                        continue
+                    try:
                         libros.append(Libro(
                             titulo=fila[0],
                             autor=fila[1],
@@ -70,6 +74,8 @@ class Libro:
                             isbn=fila[3],
                             estado=EstadoLibro(int(fila[4]))
                         ))
+                    except Exception as e:
+                        print(f"Error en la fila {i + 1}: {fila}. Detalle: {e}")
         except FileNotFoundError:
             pass
         return libros
