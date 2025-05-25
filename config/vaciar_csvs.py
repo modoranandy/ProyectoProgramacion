@@ -14,7 +14,7 @@ def vaciar_todos_los_csv():
     archivos = [
         "config/alumnos.csv",
         "config/libros.csv",
-        "config/prestamos.csv"
+        "config/prestamos.csv",
         "config/admins.csv"
     ]
     for archivo in archivos:
