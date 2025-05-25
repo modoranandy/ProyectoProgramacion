@@ -3,21 +3,21 @@ from abc import abstractmethod,ABC
 class Menu(ABC):
 
     @abstractmethod
-    def _main(self):
+    def main(self):
         pass
 
     @abstractmethod
-    def _visualizar_menu(self):
+    def visualizar_menu(self):
         pass
 
     @abstractmethod
-    def _opciones(self):
+    def opciones(self):
         pass
 
     @abstractmethod
-    def _tratar_opciones(self):
+    def tratar_opciones(self, opcion:int):
         pass
 
     @abstractmethod
-    def _recoger_menu_opciones(self) -> int:
+    def recoger_menu_opciones(self) -> int:
         pass

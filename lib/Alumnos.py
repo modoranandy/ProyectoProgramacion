@@ -28,7 +28,7 @@ class Alumno:
         return False
 
     @staticmethod
-    def _add_new_alumno():
+    def add_new_alumno():
         nombre = input("Nombre del Alumno: ")
         apellido = input("Apellido del Alumno: ")
         edad = int(input("Edad del Alumno: "))

@@ -3,7 +3,7 @@ from ui.login import Login
 class Registro:
     ESPACIOS: int = 60
 
-    def _imprimir_menu(self):
+    def imprimir_menu(self):
         print("-" * self.ESPACIOS)
         print("REGISTRO USUARIOS".center(self.ESPACIOS))
         print("-" * self.ESPACIOS)
@@ -11,7 +11,7 @@ class Registro:
         print("Si usted se desea registrar en la página web, pida en su centro su contraseña y usuario.")
 
     @staticmethod
-    def _recoger_opcion() -> str:
+    def recoger_opcion() -> str:
         while True:
             opcion = input("¿Se quiere registrar usted? (S/N): ").upper()
             if opcion in ("S", "N"):
@@ -20,7 +20,7 @@ class Registro:
                 print("Error, introduzca una opción válida (S o N).")
 
     @staticmethod
-    def _tratar_opcion( opcion: str):
+    def tratar_opcion( opcion: str):
         match opcion:
             case "S":
                 Login()
@@ -29,7 +29,7 @@ class Registro:
             case _:
                 print("Error inesperado.")
 
-    def _registrarse(self):
-        self._imprimir_menu()
-        opcion = self._recoger_opcion()
-        self._tratar_opcion(opcion)
+    def registrarse(self):
+        self.imprimir_menu()
+        opcion = self.recoger_opcion()
+        self.tratar_opcion(opcion)

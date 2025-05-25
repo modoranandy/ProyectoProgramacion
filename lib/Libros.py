@@ -5,7 +5,7 @@ RUTA_CSV = "config/libros.csv"
 
 class Libro:
 
-    CAMPOS = ["tirulo" "autor" "numero_ejemplares" "isbn" "estado"]
+    CAMPOS = ["titulo" "autor" "numero_ejemplares" "isbn" "estado"]
 
     def __init__(self, titulo:str ="Titulo", autor:str = "Autor" , numero_ejemplares:int = 0,
                  isbn:str ="0000000X" , estado: EstadoLibro | None = None ):

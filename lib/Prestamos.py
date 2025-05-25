@@ -9,10 +9,10 @@ class Prestamo:
 
     def __init__(self, isbn:str = "00000000X", dni_alumno:str = "0000000X", fecha_prestamo:str = "00/00/0000",
                  fecha_devolucion:str = "00/00/0000", estado :EstadoPrestamo | None = None):
-        self.isbn = str(isbn)
-        self.dni_alumno = str(dni_alumno)
-        self.fecha_prestamo = str(fecha_prestamo)
-        self.fecha_devolucion = str(fecha_devolucion)
+        self.isbn:str = str(isbn)
+        self.dni_alumno:str = str(dni_alumno)
+        self.fecha_prestamo:str = str(fecha_prestamo)
+        self.fecha_devolucion:str = str(fecha_devolucion)
         self.estado: EstadoPrestamo = estado if estado in EstadoPrestamo else EstadoPrestamo.NOPRESTADO
 
     def __str__(self):
@@ -25,7 +25,7 @@ class Prestamo:
         return False
 
     @staticmethod
-    def _add_new_prestamo():
+    def add_new_prestamo():
         isbn = input("ISBN del libro: ")
         dni_alumno = input("DNI/NIE del alumno: ")
         fecha_prestamo = input("Fecha de préstamo (DD/MM/YYYY): ")
@@ -36,7 +36,7 @@ class Prestamo:
         return Prestamo(isbn, dni_alumno, fecha_prestamo, fecha_devolucion, estado)
 
     @staticmethod
-    def buscar_prestamo_por_id(prestamos, isbn):
+    def buscar_prestamo_por_isbn(prestamos, isbn):
         for prestamo in prestamos:
             if prestamo.isbn == isbn:
                 return prestamo
@@ -44,7 +44,7 @@ class Prestamo:
 
     @staticmethod
     def eliminar_prestamo(prestamos, isbn):
-        prestamo = Prestamo.buscar_prestamo_por_id(prestamos, isbn)
+        prestamo = Prestamo.buscar_prestamo_por_isbn(prestamos, isbn)
         if prestamo:
             prestamos.remove(prestamo)
             Prestamo.guardar_prestamos(prestamos)
@@ -80,12 +80,11 @@ class Prestamo:
             writer.writerow(Prestamo.CAMPOS)
             for prestamo in prestamos:
                 writer.writerow([
-                    prestamo.id,
                     prestamo.isbn,
                     prestamo.dni_alumno,
                     prestamo.fecha_prestamo,
                     prestamo.fecha_devolucion,
-                    prestamo.estado
+                    prestamo.estado.value
                 ])
 
 def editar_prestamo(prestamos):
@@ -105,7 +104,7 @@ def editar_prestamo(prestamos):
     nuevo_dni = input(f"DNI/NIE [{prestamo.dni_alumno}]: ")
     nueva_fecha_prestamo = input(f"Fecha de préstamo [{prestamo.fecha_prestamo}]: ")
     nueva_fecha_devolucion = input(f"Fecha de devolución [{prestamo.fecha_devolucion}]: ")
-    nuevo_estado = input(f"Estado (0=ACTIVO, 1=FINALIZADO) [{prestamo.estado}]: ")
+    nuevo_estado = int(input(f"Estado (0=ACTIVO, 1=FINALIZADO) [{prestamo.estado}]: "))
 
     if nuevo_isbn:
         prestamo.isbn = nuevo_isbn
